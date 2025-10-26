@@ -53,8 +53,8 @@ class Page extends Model
 
     public function getPage($slugs){
         if(is_array($slugs))
-        return $this->with('sections')->whereIn('pointslug',$slugs)->get()->groupBy('slug');
+        return $this->with('sections')->whereIn('slug',$slugs)->get()->groupBy('slug');
         else
-        return $this->with('sections')->where('pointslug',$slugs)->first();
+        return $this->with('sections')->where('slug',$slugs)->first();
     }
 }
