@@ -1,0 +1,168 @@
+.hidden {
+    display: none !important;
+}
+
+.tox-notifications-container {
+    display: none;
+}
+
+.error,
+.chkerror {
+    color: red !important;
+    text-transform: unset !important;
+}
+
+.editable {
+    position: relative;
+}
+
+.editable .edit {
+    position: absolute;
+    left: -15px;
+    top: 0px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #5e72e4;
+}
+
+.editable .close {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+}
+
+.previewhidden {
+    display: none !important;
+}
+
+.tox-fullscreen {
+    z-index: 999999 !important;
+}
+
+.tox-tinymce-aux {
+    z-index: 9999999 !important;
+}
+
+.card .table tbody td:first-child,
+.card .table thead th:first-child {
+    display: table-cell !important;
+}
+
+.designblock img {
+    max-width: 100%;
+}
+
+.submitbtndiv .btn {
+    height: 37px;
+    margin: 2px;
+    background-color: #78b414;
+    color: #FFFFFF;
+    border-color: #78b414;
+}
+
+* {
+    outline-color: #2dce89;
+}
+
+.element {
+    white-space: pre-line;
+    position: relative;
+}
+
+.moveupbtn,
+.movedownbtn {
+    float: left;
+    font-size: 30px;
+    margin: 10px 0px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.table-sortable tbody tr:nth-child(2) .moveupbtn {
+    display: none;
+}
+
+.table-sortable tbody tr:last-child .movedownbtn {
+    display: none;
+}
+
+#updatenotesModal {
+    z-index: 99999999;
+}
+
+.submitbtndiv {
+    position: fixed;
+    bottom: 10px;
+    z-index: 9999999;
+    padding: 20px;
+    background: #ffffff;
+    right: 30px;
+    border: 1px solid #797979;
+}
+
+[data-toggle="collapse"] {
+    cursor: pointer;
+}
+
+#designModal {
+    z-index: 9999999999999999999;
+}
+
+#galleryModal {
+    z-index: 9999999999999999999;
+}
+
+#elepathModal {
+    z-index: 9999999999999999999;
+}
+
+/* .tox-tinymce-aux .tox-toolbar button[aria-label="Image options"] {
+    display: none;
+} */
+
+#designModal .modal-dialog {
+    width: 90% !important;
+    max-width: 100%;
+}
+
+.pathborder {
+    padding: 20px;
+    border: 1px dashed;
+    cursor: pointer;
+}
+
+
+/* .pathborder:hover{
+        background: #ccc;
+    } */
+
+.modal.show .modal-dialog{
+    transform: none !important;
+}
+
+.settingsdiv{
+    position: absolute;
+    top: -5px;
+    right: 150px;
+    padding: 5px;
+    z-index: 9;
+}
+
+.settingsdiv .settingbtn{
+    cursor: pointer;
+    margin-right: 2px;
+    padding: 9px;
+    background: orange;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    line-height: 1.42857143;
+    /* font-size: 0.75rem; */
+    padding: 7px 10px;
+    font-weight: 400;
+}
+
+.settingsdiv .settingbtn.active{
+    background: #008065;
+}

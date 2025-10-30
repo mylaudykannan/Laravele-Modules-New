@@ -1,0 +1,9 @@
+{
+    "current": {
+        "dateFormat": "d-m-Y",
+        "defaultDate": "today"
+    },
+    "default": {
+        "dateFormat": "d-m-Y"
+    }
+}

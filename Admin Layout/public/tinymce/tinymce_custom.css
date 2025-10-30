@@ -1,0 +1,13 @@
+@import url('http://127.0.0.1:8000/frontend/assets/vendor/bootstrap/css/bootstrap.min.css');
+@import url('http://127.0.0.1:8000/frontend/assets/vendor/bootstrap-icons/bootstrap-icons.css');
+@import url('http://127.0.0.1:8000/frontend/assets/vendor/aos/aos.css');
+@import url('http://127.0.0.1:8000/frontend/assets/vendor/glightbox/css/glightbox.min.css');
+@import url('http://127.0.0.1:8000/frontend/assets/vendor/swiper/swiper-bundle.min.css');
+@import url('http://127.0.0.1:8000/frontend/assets/css/main.css');
+
+html:not(.no-js) [data-aos^=fade][data-aos^=fade]{
+    opacity: 1;
+}
+html:not(.no-js) [data-aos^=zoom][data-aos^=zoom] {
+    opacity: 1;
+}
