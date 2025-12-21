@@ -1,0 +1,25 @@
+change email link verification to otp verification in laravel 12
+- migration file
+	- php artisan make:migration add_otp_fields_to_users_table --table=users
+- file code - https://github.com/mylaudykannan/Laravel-Codes/blob/main/email%20otp%20migration
+- run migration
+	- php artisan migrate
+- in RegisterController change function - https://github.com/mylaudykannan/Laravel-Codes/blob/main/for%20otp%20change%20registercontroller%20function
+
+
+- for otp mail
+	- run command
+		- php artisan make:mail EmailOtpNotification
+	- change code app\Mail\EmailOtpNotification.php
+		- https://github.com/mylaudykannan/Laravel-Codes/blob/main/Email%20otp%20code
+	- otp email blade code - https://github.com/mylaudykannan/Laravel-Codes/blob/main/email%20otp%20blade%20code
+
+- otp verify form and action
+	- otp controller code - https://github.com/mylaudykannan/Laravel-Codes/blob/main/otp%20controller
+	- otp form blade - https://github.com/mylaudykannan/Laravel-Codes/blob/main/verify%20otp%20form%20blade
+	- routes for otp in web.php
+		- // OTP Verification Routes
+use App\Http\Controllers\Auth\OtpVerificationController;
+Route::get('/verify-email-otp', [OtpVerificationController::class, 'showForm'])->name('verify.otp.form');
+Route::post('/verify-email-otp', [OtpVerificationController::class, 'verify'])->name('verify.otp');
+// End
