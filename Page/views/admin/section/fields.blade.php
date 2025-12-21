@@ -28,6 +28,10 @@ $scontent = json_decode($sv['content'],true);
     ??
     '','class'=>$fieldv['class'] ?? '','attr'=>$fieldv['attr'] ?? '', 'label' => $fieldv['label'] ?? ucfirst($fieldk), 'showremove' => true, 'sizemessage' => $fieldv['size-message'] ?? ''])
 </div>
+@elseif($fieldv['type']=='button')
+<div class="form-group">
+    <a href="{{URL('admin/'.$fieldv['link']) ?? '#'}}" class="btn btn-primary btn-sm">{{$fieldv['label'] ?? ucfirst($fieldk)}}</a>
+</div>
 @endif
 @endforeach
 @else
@@ -47,6 +51,10 @@ $scontent = json_decode($sv['content'],true);
 @elseif($fieldv['type']=='image')
 <div class="form-group">
     @include('Gallery::admin.inc.mediainput',['name'=>$k.$fieldk.$sknew,'class'=>$fieldv['class'] ?? '','attr'=>$fieldv['attr'] ?? '', 'label' => $fieldv['label'] ?? ucfirst($fieldk), 'showremove' => true, 'sizemessage' => $fieldv['size-message'] ?? ''])
+</div>
+@elseif($fieldv['type']=='button')
+<div class="form-group">
+    <a href="{{$fieldv['link'] ?? '#'}}" class="btn btn-primary btn-sm">{{$fieldv['label'] ?? ucfirst($fieldk)}}</a>
 </div>
 @endif
 @endforeach

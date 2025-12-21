@@ -1,0 +1,226 @@
+laravel modules git - https://github.com/mylaudykannan/Laravele-Modules-News
+-----------------
+1. install laravel
+composer create-project laravel/laravel foldername –-prefer-dist
+2. configure .env db and mail
+3. specifiefd key too long error
+- app\Providers\AppServiceProvider.php
+
+use Illuminate\Support\Facades\Schema;
+	
+	public function boot()
+	{
+		Schema::defaultStringLength(191);
+	}
+4. run migration
+- php artisan migrate
+5. UI and auth commands
+- composer require laravel/ui
+- php artisan ui bootstrap --auth
+6. add bootstrap cdn links in app layout and hide vite manifest link
+7. for email verification add implements MustVerifyEmail in User model
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+
+8. add below code in routes
+- https://github.com/mylaudykannan/Laravel-Codes/blob/main/Email%20verify%20route%20codes
+
+9. for email verify middleware use this code in route
+
+Route::middleware(['auth', 'verified'])->group(function () {
+10. run the project
+- php artisan serve
+-------------------------------------
+User roles module
+11. install spatie package
+- composer require spatie/laravel-permission
+12. add code in bootstrap\providers.php
+return [
+.
+.
+    Spatie\Permission\PermissionServiceProvider::class,
+];
+13. add code in bootstrap\app.php
+
+->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'role' => Spatie\Permission\Middleware\RoleMiddleware::class,
+        ]);
+    })
+14. run commands
+- php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+- php artisan config:clear
+
+15. before run migration if specified key too long issue came modify config/database.php
+'mysql' => [
+.
+'engine' => 'InnoDB ROW_FORMAT=DYNAMIC',
+.
+]
+16. run migration command
+- php artisan migrate
+17. Create admin user and role seeder - run command 
+- php artisan make:seeder AdminAndRoles
+18. seeder file code - database\seeders\AdminAndRoles.php
+- https://github.com/mylaudykannan/Laravel-Codes/blob/main/AdminAndRoles%20seeder
+19. Edit user model for roles
+
+use Spatie\Permission\Traits\HasRoles;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+use HasRoles;
+
+19. run AdminAndRoles seeder
+- php artisan db:seed --class=AdminAndRoles
+
+20. Copy paste User modules under app\Modules\ folder
+21. registser user module service provider in bootstrap\providers.php
+- App\Modules\User\Providers\UserServiceProvider::class,
+
+22. copy this code in app\Http\Controllers\Auth\LoginController.php 
+
+use Illuminate\Http\Request;
+protected function authenticated(Request $request, $user)
+    {
+        if ($user->hasRole('Admin')) {
+            return redirect('admin/user');
+        }
+        return redirect('/');
+    }
+
+23. copy paste admin template files in root folder
+- https://github.com/mylaudykannan/Laravele-Modules-New/tree/main/Admin%20Layout
+24. now login as admin - you can see admin dashboard with user module functions
+------------------------
+gallery module
+25. copy paste gallery module under app\Modules folder
+26. register provider in bootstrap\providers.php
+- App\Modules\Gallery\Providers\GalleryServiceProvider::class,
+27. run migration command for gallery module
+- php artisan migrate --path=app\Modules\Gallery\Database\Migrations
+28. publish gallery assets by run this command
+- php artisan vendor:publish --tag=gallery-assets --force
+29. now check gallery functions in admin dashboard
+------------------------
+menu module
+30. copy paste Menu module under app\Modules folder
+31. register provider in bootstrap\providers.php
+- App\Modules\Menu\Providers\MenuServiceProvider::class,
+32.  run this migrate command for Menu module
+- php artisan migrate --path=app\Modules\Menu\Database\Migrations
+33. publish menu assets by run this command
+- php artisan vendor:publish --tag=menu-assets --force
+34. now check menu functions in admin dashboard
+-------------------------
+news module
+35. copy paste News module under app\Modules folder
+36. register provider in bootstrap\providers.php
+- App\Modules\News\Providers\NewsServiceProvider::class,
+37. run this migrate command for News module
+- php artisan migrate --path=app\Modules\News\Database\Migrations
+38. now check news functions in admin dashboard
+------------------------
+design module
+39. copy paste Design module under app\Modules folder
+40. register provider in bootstrap\providers.php
+- App\Modules\Design\Providers\DesignServiceProvider::class,
+41. run this migrate command for Design module
+- php artisan migrate --path=app\Modules\Design\Database\Migrations
+42. now check design functions in admin dashboard
+-------------------------
+tinymce editor css
+43. edit public\tinymce\tinymce_custom.css
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+-----------------------
+44. frontend menu code
+- https://github.com/mylaudykannan/Laravel-Codes/commit/1e0919b22e6e31fb4b2954b54e39a525e4c33beb
+45. page module frontend code
+- https://github.com/mylaudykannan/Laravel-Codes/commit/91f0566ce35cd5a5822105ce180fdc0b21f338b6
+---------------------
+convert tinymce to summernote
+46. copy paste summer note files in root folder
+- https://github.com/mylaudykannan/Laravele-Modules-New/tree/main/Summernote%20Files
+47. in resources\views\admin\inc\tinyscript.blade.php add css libraries for summer note 
+- like this
+<link rel="stylesheet" href="{{ asset('summernote/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('summernote/frontend.css') }}">
+eg: 
+.note-editing-area .bg-red {
+ }
+use this libraraies
+- https://github.com/mylaudykannan/Javascsript/blob/main/scss-to-css.html
+	- file:///D:/wamp64/www/scsstocss.html
+- https://htmlcsscleaner.com/css-cleaner/
+- https://codebeautify.org/css-beautify-minify#s
+----------------------------------
+cms config configuration for Page module
+48. to customize sections with custom fields edit Page module config
+- app\Modules\Page\config\page.php
+49. show page in frontend
+- Route::get('/{slug?}', [App\Http\Controllers\HomeController::class, 'page']); //in routes
+- page function
+****
+use App\Modules\Page\Models\Page;
+use App\Modules\Page\Models\PageSection;
+
+public function page($slug = 'home')
+    {
+        if(config('page.hide-page.'.$slug)){
+            abort(404);
+        }
+        $page = new Page();
+        $page = $page->getPage($slug);
+
+        $data = [];
+        if ($slug == 'home') { //for home page values
+            //masters
+            $data['courseSubjects'] = CourseSubject::all();
+            $data['courseTypes'] = CourseType::all();
+            $data['degreeLevels'] = DegreeLevel::all();
+        }
+
+        $pagesections = PageSection::where('page_id', $page->id)->get()->groupBy('type');
+
+        return view('page', ['page' => $page, 'pagesections' => $pagesections, 'slug' => $slug, 'data' => $data]);
+    }
+
+-
+in summernote editor ajax load contents
+
+<div class="ajax-content" data-path="/ajax/home-colleges"><a href="http://localvietnam.com/admin/courses" class="d-none adminlink" target="_self">Courses</a></div>
+****
+50. page.blade.php code 
+- https://github.com/mylaudykannan/Laravel-Codes/blob/6517831c84c1931c7611c3849948e0188f923650/page.blade.php%20code
+
+51. if page config file particular page section has template value - it should have template file
+eg: 
+<?php
+return [
+    'section' => [
+        .
+	.
+	.
+        'home' => [
+            'slider' => [
+                'title' => 'Slider',
+                'template' => 'home.slider', //resources\views\templates\home\slider.blade.php
+                /* 'blade' => 'breadcrump', */
+                // 'static' => true,
+                'fields' => [
+                    'image' => ['validation' => 'required', 'type' => 'image'],//,'allowed' => 'page'
+                    'title' => ['validation' => '', 'type' => 'input'],//,'allowed' => 'page'
+                    'subtitle' => ['validation' => '', 'type' => 'input']//,'allowed' => 'page'
+                ]
+            ],
+ 52. sample template section code
+- https://github.com/mylaudykannan/Laravel-Codes/blob/3833a203e65276bbb684e96a2da2ff260652d04b/sample%20template%20file%20section%20code
+53. For directly querying page values - useful for static item with multiple sub items
+- https://github.com/mylaudykannan/Laravel-Codes/blob/c2f8c974ac840b5075511d147d010848a79e18e8/Sample%20for%20staic%20page%20with%20dynamic%20items
+
+54. page config explanation
+- https://github.com/mylaudykannan/Laravel-Codes/blob/93ee9cad5c2aca43fd334e878c64953dc8c2eccb/Page%20config%20explanation
+
