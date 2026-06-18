@@ -210,7 +210,7 @@ in summernote editor ajax load contents
 <div class="ajax-content" data-path="/ajax/home-colleges"><a href="http://localvietnam.com/admin/courses" class="d-none adminlink" target="_self">Courses</a></div>
 ****
 50. page.blade.php code 
-- https://github.com/mylaudykannan/Laravel-Codes/blob/6517831c84c1931c7611c3849948e0188f923650/page.blade.php%20code
+- https://raw.githubusercontent.com/mylaudykannan/Laravel-Codes/refs/heads/main/page.blade.php%20code
 
 51. if page config file particular page section has template value - it should have template file
 eg: 
