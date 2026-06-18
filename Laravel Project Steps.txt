@@ -199,7 +199,7 @@ public function page($slug = 'home')
             $data['degreeLevels'] = DegreeLevel::all();
         }
 
-        $pagesections = PageSection::where('page_id', $page->id)->get()->groupBy('type');
+        $pagesections = PageSection::where('page_id', $page->id)->orderBy('order', 'ASC')->get()->groupBy('type');
 
         return view('page', ['page' => $page, 'pagesections' => $pagesections, 'slug' => $slug, 'data' => $data]);
     }
