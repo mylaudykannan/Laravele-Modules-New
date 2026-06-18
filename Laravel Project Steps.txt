@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Schema;
 	{
 		Schema::defaultStringLength(191);
 	}
+-----
+In Laravel 13 edit migration code - database\migrations\0001_01_01_000002_create_jobs_table.php
+Schema::create('failed_jobs', function (Blueprint $table) {
+.
+$table->string('connection', 100);
+            $table->string('queue', 100);
+.
+}
 4. run migration
 - php artisan migrate
 5. UI and auth commands
