@@ -238,5 +238,5 @@ return [
 - https://github.com/mylaudykannan/Laravel-Codes/blob/c2f8c974ac840b5075511d147d010848a79e18e8/Sample%20for%20staic%20page%20with%20dynamic%20items
 
 54. page config explanation
-- https://github.com/mylaudykannan/Laravel-Codes/blob/93ee9cad5c2aca43fd334e878c64953dc8c2eccb/Page%20config%20explanation
+- https://raw.githubusercontent.com/mylaudykannan/Laravel-Codes/refs/heads/main/Page%20config%20explanation
 
