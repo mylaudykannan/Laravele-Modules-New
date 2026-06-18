@@ -131,6 +131,14 @@ news module
 - php artisan migrate --path=app\Modules\News\Database\Migrations
 38. now check news functions in admin dashboard
 ------------------------
+page module
+35. copy paste Page module under app\Modules folder
+36. register provider in bootstrap\providers.php
+- App\Modules\Page\Providers\PageServiceProvider::class,
+37. run this migrate command for Page module
+- php artisan migrate --path=app\Modules\Page\Database\Migrations
+38. now check page functions in admin dashboard
+------------------------
 design module
 39. copy paste Design module under app\Modules folder
 40. register provider in bootstrap\providers.php
