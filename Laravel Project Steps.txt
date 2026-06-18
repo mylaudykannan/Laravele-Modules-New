@@ -201,7 +201,7 @@ public function page($slug = 'home')
 
         $pagesections = PageSection::where('page_id', $page->id)->orderBy('order', 'ASC')->get()->groupBy('type');
 
-        return view('page', ['page' => $page, 'pagesections' => $pagesections, 'slug' => $slug, 'data' => $data]);
+        return view(config('page.blade.'.$page->blade), ['page' => $page, 'pagesections' => $pagesections, 'slug' => $slug, 'data' => $data]);
     }
 
 -
