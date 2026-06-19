@@ -212,6 +212,11 @@ in summernote editor ajax load contents
 50. page.blade.php code 
 - https://raw.githubusercontent.com/mylaudykannan/Laravel-Codes/refs/heads/main/page.blade.php%20code
 
+50. B 
+- app layout stack and push inclide
+@stack('head') for @push('head')
+@yield('scripts') for @section('scripts')
+
 51. if page config file particular page section has template value - it should have template file
 eg: 
 <?php
