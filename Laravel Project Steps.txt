@@ -240,3 +240,6 @@ return [
 54. page config explanation
 - https://raw.githubusercontent.com/mylaudykannan/Laravel-Codes/refs/heads/main/Page%20config%20explanation
 
+55. Section Module Frontend Code
+- https://raw.githubusercontent.com/mylaudykannan/Laravel-Codes/refs/heads/main/Directly%20Queriying%20Section%20Module%20Code
+
