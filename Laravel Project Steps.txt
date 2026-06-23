@@ -3,6 +3,9 @@ laravel modules git - https://github.com/mylaudykannan/Laravele-Modules-News
 1. install laravel
 composer create-project laravel/laravel foldername –-prefer-dist
 2. configure .env db and mail
+- edit below vale in .env for tinymce editor path error
+ROOTFOLDER=''
+IMGROOTFOLDER="http://local-sc-edu-ria.com"
 3. specifiefd key too long error
 - app\Providers\AppServiceProvider.php
 
